@@ -22,7 +22,6 @@ public class es_lab1q2 {
                 }
             }
             System.out.println(cont);
-            // Chama a função recursivamente para processar a próxima linha
             letrasMaiusculas(scanner);
         }
     }
