@@ -1,13 +1,10 @@
-import java.util.Scanner;
-
 public class tp1q3 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         String frase;
         int tamanho;
         StringBuilder novaFrase;
         while(true){
-            frase = scanner.nextLine();
+            frase = MyIO.readLine();
             tamanho = frase.length();
             novaFrase = new StringBuilder();
             if(frase.equals("FIM")) {
@@ -19,8 +16,7 @@ public class tp1q3 {
                 char letra = (char) decimal;
                 novaFrase.append(letra);
             }
-            System.out.print(novaFrase.toString() + "\n");
+            MyIO.print(novaFrase.toString() + "\n");
         }
-        scanner.close();
     }
 }
