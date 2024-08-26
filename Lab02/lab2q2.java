@@ -25,5 +25,6 @@ public  class lab2q2 {
 
             System.out.println(novapalavra.toString());
         }
+        scanner.close();
     }
 }
