@@ -1,25 +1,24 @@
 public class tp1q12 {
     public static void main(String[] args) {
-        String fim = "FIM";
-        ciframento(fim);
+        while(true) {
+        String frase = MyIO.readLine();
+        if(frase.equals("FIM")) {
+            break;
+        }
+        ciframento(frase, 0);
+        MyIO.print("\n");
+        }
     }
 
-    public static void ciframento(String fim) {
-        String frase;
-        StringBuilder ciframento = new StringBuilder();
-        frase = MyIO.readLine();
-        if(frase.equals("FIM")) {
+    public static void ciframento(String frase, int i) {
+        if (i == frase.length()) {
             return;
-        }
-        int num = 0;
-        ciframento.append(frase);
-        for(int i = 0; i < ciframento.length(); i++) {
-            num = ciframento.charAt(i);
+        } else {
+            int num = (int) frase.charAt(i);
             num += 3;
             char c = (char) num;
-            MyIO.print(c);   
+            MyIO.print(c);
+            ciframento(frase, i + 1);
         }
-        MyIO.print("\n");         
-        ciframento(fim);
     }
 }
