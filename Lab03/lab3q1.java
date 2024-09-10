@@ -4,7 +4,7 @@ public class lab3q1 {
             String frase;
             frase = MyIO.readLine();
             int pd = 0, pe = 0;
-            boolean resp = true, direita = true, esquerda = false, aux = true;
+            boolean resp = true;
             char e = '(', d = ')';
             if(frase.equals("FIM")) {
                 break;
