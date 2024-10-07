@@ -2,8 +2,8 @@ import java.util.*;
 
 public class lab06 {
     public static void main(String[] args) {
-        int[] array = new int[10000];
-        arrayOrdenado(array);
+        int[] array = new int[1000];
+        arrayAleatorio(array);
         int n = array.length;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Qual opção de ordenação deseja utilizar?\n1 - QuickSort por meio do pivô no primeiro elemento\n2 - QuickSort por meio do pivô no último elemento\n3 - QuickSort por meio do pivô em uma posição aleatória\n4 - QuickSort por meio do pivô na mediana dos três elementos (início, meio, fim)");
@@ -51,7 +51,7 @@ public class lab06 {
                 break;
             }
             default: {
-                System.out.print("Opção Inválida");
+                System.out.print("Opção Inválida\n");
             }
 
         }
@@ -196,6 +196,36 @@ public class lab06 {
             int temp = array[minIndex];
             array[minIndex] = array[i];
             array[i] = temp;
+        }
+    }
+
+    public static void arrayQuaseOrdenado(int[] array) {
+        Random gerador = new Random();
+        
+        for (int i = 0; i < array.length; i++) {
+            array[i] = gerador.nextInt(1000);
+        }
+    
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
+        }
+    
+        for (int i = 0; i < n / 10; i++) { 
+            int pos1 = gerador.nextInt(n);
+            int pos2 = gerador.nextInt(n);
+            
+            int temp = array[pos1];
+            array[pos1] = array[pos2];
+            array[pos2] = temp;
         }
     }
 
