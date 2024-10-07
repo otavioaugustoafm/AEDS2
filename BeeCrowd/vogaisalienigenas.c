@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int main() {
-    FILE *arquivo = fopen("entrada.txt", "r");
+    FILE *arquivo = fopen("txt/entrada.txt", "r");
     char vogais[6];
     int cont = 0;
 
@@ -17,10 +17,10 @@ int main() {
             for(int j = 0; j < 5; j++) {
                 if(frase[i] == vogais[j]) {
                     cont++;
-                    printf("%d\n", cont);
                 }
             }
         }
+        printf("%d\n", cont);
     }
     fclose(arquivo);
 }
