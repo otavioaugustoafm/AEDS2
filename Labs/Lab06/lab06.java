@@ -2,60 +2,306 @@ import java.util.*;
 
 public class lab06 {
     public static void main(String[] args) {
-        int[] array = new int[1000];
-        arrayAleatorio(array);
-        int n = array.length;
+        int[] tamanho = {100,1000,10000};
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual opção de ordenação deseja utilizar?\n1 - QuickSort por meio do pivô no primeiro elemento\n2 - QuickSort por meio do pivô no último elemento\n3 - QuickSort por meio do pivô em uma posição aleatória\n4 - QuickSort por meio do pivô na mediana dos três elementos (início, meio, fim)");
+        System.out.println("Qual opção de ordenação deseja utilizar?\n1 - QuickSort por meio do pivô no primeiro elemento\n2 - QuickSort por meio do pivô no último elemento\n3 - QuickSort por meio do pivô em uma posição aleatória\n4 - QuickSort por meio do pivô na mediana dos três elementos (início, meio, fim)\n5 - Sair");
         int op = scanner.nextInt();
         long startTime, endTime, duration;
+        while(op != 5) {
         switch (op) {
             case 1: {
-                System.out.print("Antes da ordenação: " + Arrays.toString(array) + "\n");
+                int[] array1 = arrayOrdenado(tamanho[0]); 
+                int[] array2 = arrayOrdenado(tamanho[1]); 
+                int[] array3 = arrayOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array já ordenado\n");
+                System.out.println("100 elementos\n");
                 startTime = System.nanoTime();
-                quicksortPrimeiro(array, 0, n-1);
+                quicksortPrimeiro(array1, 0, array1.length-1);
                 endTime = System.nanoTime();
                 duration = endTime - startTime;
-                System.out.print("Depois da ordenação: " + Arrays.toString(array) + "\n");
-                System.out.println("Tempo de execução (ns): " + duration);
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayQuaseOrdenado(tamanho[0]); 
+                array2 = arrayQuaseOrdenado(tamanho[1]); 
+                array3 = arrayQuaseOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayAleatorio(tamanho[0]); 
+                array2 = arrayAleatorio(tamanho[1]); 
+                array3 = arrayAleatorio(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortPrimeiro(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
                 break;
             }
             case 2: {
-                System.out.print("Antes da ordenação: " + Arrays.toString(array) + "\n");
+                int[] array1 = arrayOrdenado(tamanho[0]); 
+                int[] array2 = arrayOrdenado(tamanho[1]); 
+                int[] array3 = arrayOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no último elemento e tendo o array já ordenado\n");
+                System.out.println("100 elementos\n");
                 startTime = System.nanoTime();
-                quicksortUltimo(array, 0, n-1);
+                quicksortUltimo(array1, 0, array1.length-1);
                 endTime = System.nanoTime();
                 duration = endTime - startTime;
-                System.out.print("Depois da ordenação: " + Arrays.toString(array) + "\n");
-                System.out.println("Tempo de execução (ns): " + duration);
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayQuaseOrdenado(tamanho[0]); 
+                array2 = arrayQuaseOrdenado(tamanho[1]); 
+                array3 = arrayQuaseOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayAleatorio(tamanho[0]); 
+                array2 = arrayAleatorio(tamanho[1]); 
+                array3 = arrayAleatorio(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortUltimo(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
                 break;
             }
             case 3: {
-                System.out.print("Antes da ordenação: " + Arrays.toString(array) + "\n");
+                int[] array1 = arrayOrdenado(tamanho[0]); 
+                int[] array2 = arrayOrdenado(tamanho[1]); 
+                int[] array3 = arrayOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo em uma posição aleatória e tendo o array já ordenado\n");
+                System.out.println("100 elementos\n");
                 startTime = System.nanoTime();
-                quicksortAleatorio(array, 0, n-1);
+                quicksortAleatorio(array1, 0, array1.length-1);
                 endTime = System.nanoTime();
                 duration = endTime - startTime;
-                System.out.print("Depois da ordenação: " + Arrays.toString(array) + "\n");
-                System.out.println("Tempo de execução (ns): " + duration);
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayQuaseOrdenado(tamanho[0]); 
+                array2 = arrayQuaseOrdenado(tamanho[1]); 
+                array3 = arrayQuaseOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayAleatorio(tamanho[0]); 
+                array2 = arrayAleatorio(tamanho[1]); 
+                array3 = arrayAleatorio(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortAleatorio(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
                 break;
             }
             case 4: {
-                System.out.print("Antes da ordenação: " + Arrays.toString(array) + "\n");
+                int[] array1 = arrayOrdenado(tamanho[0]); 
+                int[] array2 = arrayOrdenado(tamanho[1]); 
+                int[] array3 = arrayOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo na mediana e tendo o array já ordenado\n");
+                System.out.println("100 elementos\n");
                 startTime = System.nanoTime();
-                quicksortMediana(array, 0, n-1);
+                quicksortMediana(array1, 0, array1.length-1);
                 endTime = System.nanoTime();
                 duration = endTime - startTime;
-                System.out.print("Depois da ordenação: " + Arrays.toString(array) + "\n");
-                System.out.println("Tempo de execução (ns): " + duration);
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayQuaseOrdenado(tamanho[0]); 
+                array2 = arrayQuaseOrdenado(tamanho[1]); 
+                array3 = arrayQuaseOrdenado(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+
+                array1 = arrayAleatorio(tamanho[0]); 
+                array2 = arrayAleatorio(tamanho[1]); 
+                array3 = arrayAleatorio(tamanho[2]); 
+                System.out.println("Ordenando pelo pivo no primeiro elemento e tendo o array quase ordenado\n");
+                System.out.println("100 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array1, 0, array1.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("1000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array2, 0, array2.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
+                System.out.println("10000 elementos\n");
+                startTime = System.nanoTime();
+                quicksortMediana(array3, 0, array3.length-1);
+                endTime = System.nanoTime();
+                duration = endTime - startTime;
+                System.out.println("Tempo de execução (ns): " + duration + "\n");
                 break;
             }
             default: {
                 System.out.print("Opção Inválida\n");
             }
-
+        }
+        System.out.println("Qual opção de ordenação deseja utilizar?\n1 - QuickSort por meio do pivô no primeiro elemento\n2 - QuickSort por meio do pivô no último elemento\n3 - QuickSort por meio do pivô em uma posição aleatória\n4 - QuickSort por meio do pivô na mediana dos três elementos (início, meio, fim)\n5 - Sair");
+        op = scanner.nextInt();
         }
     }
+    
 
 
     // Utilizando o QuickSort com o pivô no primeiro elemento
@@ -173,16 +419,19 @@ public class lab06 {
         return i;
     }
 
-    public static void arrayAleatorio(int[] array) {
+    public static int[] arrayAleatorio(int tamanho) {
         Random gerador = new Random();
-        for(int i = 0; i < array.length;i++) {
+        int[] array = new int[tamanho];
+        for(int i = 0; i < tamanho;i++) {
             array[i] = gerador.nextInt(10000);
         }
+        return array;
     }
 
-    public static void arrayOrdenado(int[] array) {
+    public static int[] arrayOrdenado(int tamanho) {
         Random gerador = new Random();
-        for(int i = 0; i < array.length;i++) {
+        int[] array = new int[tamanho];
+        for(int i = 0; i < tamanho;i++) {
             array[i] = gerador.nextInt(10000);
         }
         int n = array.length;
@@ -197,12 +446,13 @@ public class lab06 {
             array[minIndex] = array[i];
             array[i] = temp;
         }
+        return array;
     }
 
-    public static void arrayQuaseOrdenado(int[] array) {
+    public static int[] arrayQuaseOrdenado(int tamanho) {
         Random gerador = new Random();
-        
-        for (int i = 0; i < array.length; i++) {
+        int[] array = new int[tamanho];
+        for (int i = 0; i < tamanho; i++) {
             array[i] = gerador.nextInt(1000);
         }
     
@@ -227,6 +477,7 @@ public class lab06 {
             array[pos1] = array[pos2];
             array[pos2] = temp;
         }
+        return array;
     }
 
     public static int mediana(int[] array, int esq, int meio, int dir) {
