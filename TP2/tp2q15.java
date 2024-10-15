@@ -53,12 +53,13 @@ public class tp2q15 {
         long executionTime = (endTime - startTime) / 1_000_000; // Convertendo para milissegundos
 
         // Imprimir os registros ordenados na saída padrão
-        for (Pokemon p : pokemonArray) {
-            System.out.println(p);
-        }
+        for (int i = 0; i < pokemonArray.length && i < 10; i++) {
+            System.out.println(pokemonArray[i]);
+        }       
+
 
         // Criar o arquivo de log
-        try (PrintWriter writer = new PrintWriter("851568_selecao.txt")) {
+        try (PrintWriter writer = new PrintWriter("851568_selecaoParcial.txt")) {
             writer.printf("851568\t%d\t%d\t%dms\n", numComparacoes, numMovimentacoes, executionTime);
         } catch (IOException e) {
             e.printStackTrace();
