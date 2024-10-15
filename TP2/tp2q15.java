@@ -15,7 +15,7 @@ public class tp2q15 {
         // Ler o CSV, e passar tudo para uma List
         List<Pokemon> pokemons = ReadCsv.readAllFile("/tmp/pokemon.csv");
 
-        // List que iremos adicionar apenas os selecionados da entrada, para trabalhar só com eles
+        // List que iremos adicionar apenas os selecionados da entrada, para trabalhar so com eles
         List<Pokemon> using = new ArrayList<>();
 
         // Ler até FIM e procurar por ID, e adicionar na List
@@ -30,63 +30,41 @@ public class tp2q15 {
         // Vetor de Pokemon para ordenação
         Pokemon[] pokemonArray = using.toArray(new Pokemon[0]);
 
-        // Realizar a ordenação parcial por seleção com k igual a 10
-        int k = 10;
-        selectionSortPartial(pokemonArray, k);
+        // Algoritmo de ordenação por seleção baseado no atributo "name"
+        for (int i = 0; i < pokemonArray.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < pokemonArray.length; j++) {
+                numComparacoes++; // Incrementar número de comparações
+                if (pokemonArray[j].getName().compareToIgnoreCase(pokemonArray[minIndex].getName()) < 0) {
+                    minIndex = j;
+                }
+            }
+
+            // Troca os elementos caso necessário e conta como uma movimentação
+            if (minIndex != i) {
+                Pokemon temp = pokemonArray[i];
+                pokemonArray[i] = pokemonArray[minIndex];
+                pokemonArray[minIndex] = temp;
+                numMovimentacoes++; // Incrementar número de movimentações
+            }
+        }
 
         long endTime = System.nanoTime(); // Fim do tempo de execução
         long executionTime = (endTime - startTime) / 1_000_000; // Convertendo para milissegundos
 
-        // Imprimir os registros ordenados na saída padrão (os primeiros 10 estarão ordenados)
+        // Imprimir os registros ordenados na saída padrão
         for (Pokemon p : pokemonArray) {
             System.out.println(p);
         }
 
         // Criar o arquivo de log
-        try (PrintWriter writer = new PrintWriter("851568_selecao_parcial.txt")) {
+        try (PrintWriter writer = new PrintWriter("851568_selecao.txt")) {
             writer.printf("851568\t%d\t%d\t%dms\n", numComparacoes, numMovimentacoes, executionTime);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         sc.close();
-    }
-
-    // Método para realizar a ordenação parcial por seleção nos primeiros k elementos
-    private static void selectionSortPartial(Pokemon[] array, int k) {
-        int numComparacoes = 0;
-        int numMovimentacoes = 0;
-        k = Math.min(k, array.length); // Garantir que k não seja maior que o tamanho do array
-
-        for (int i = 0; i < k; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < array.length; j++) {
-                numComparacoes++;
-                // Comparar os elementos por captureRate e, em caso de empate, pelo nome
-                if (comparePokemons(array[j], array[minIndex]) < 0) {
-                    minIndex = j;
-                }
-            }
-
-            // Realizar a troca apenas se necessário
-            if (minIndex != i) {
-                Pokemon temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
-                numMovimentacoes++;
-            }
-        }
-    }
-
-    // Método para comparar dois Pokémons por captureRate e, em caso de empate, pelo nome
-    private static int comparePokemons(Pokemon p1, Pokemon p2) {
-        int typeComparison = p1.getTypes().get(0).compareToIgnoreCase(p2.getTypes().get(0));
-        if (typeComparison != 0) {
-            return typeComparison;
-        }
-
-        // Caso os tipos sejam iguais, comparar pelo nome
-        return p1.getName().compareToIgnoreCase(p2.getName());
     }
 }
 
@@ -242,15 +220,6 @@ class PokemonSearch {
         }
         return null;
     }
-
-    public static Pokemon searchPokemonName(List<Pokemon> pokemons, String name) {
-        for (Pokemon pokemon : pokemons) {
-            if (pokemon.getName().equalsIgnoreCase(name)) {
-                return pokemon;
-            }
-        }
-        return null;
-    }
 }
 
 class ReadCsv {
@@ -260,7 +229,7 @@ class ReadCsv {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileToRead));
             br.readLine();
-            String linha;
+            String linha = new String();
             while ((linha = br.readLine()) != null) {
                 linha = lineFormat(linha);
                 Pokemon pessoa = new Pokemon(linha.split(";"));

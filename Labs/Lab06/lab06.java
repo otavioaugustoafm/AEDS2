@@ -300,6 +300,7 @@ public class lab06 {
         System.out.println("Qual opção de ordenação deseja utilizar?\n1 - QuickSort por meio do pivô no primeiro elemento\n2 - QuickSort por meio do pivô no último elemento\n3 - QuickSort por meio do pivô em uma posição aleatória\n4 - QuickSort por meio do pivô na mediana dos três elementos (início, meio, fim)\n5 - Sair");
         op = scanner.nextInt();
         }
+        scanner.close();
     }
     
 
