@@ -100,12 +100,12 @@ int main() {
     //Aqui e criado um arquivo chamado AlunosComOrdenacaoID com as informacoes dos alunos nao ordenadas
 
     FILE *arquivo1 = fopen("AlunosComOrdenacaoID.txt", "w");
-    if(arquivo == NULL) {
+    if(arquivo1 == NULL) {
         printf("Erro ao abrir o arquivo");
     }
 
     for(int i = 0; i < n; i++) {
-        fprintf(arquivo,"%d\n%s\n%d %d %d\n", alunos[i].id, alunos[i].nome,alunos[i].nasc.dia, alunos[i].nasc.mes, alunos[i].nasc.ano);
+        fprintf(arquivo1,"%d\n%s\n%d %d %d\n", alunos[i].id, alunos[i].nome,alunos[i].nasc.dia, alunos[i].nasc.mes, alunos[i].nasc.ano);
     }
 
     fclose(arquivo1);
@@ -149,13 +149,60 @@ int main() {
     //Aqui e criado um arquivo chamado AlunosComOrdenacaoANO com as informacoes dos alunos ordenadas pelo ano
 
     FILE *arquivo2 = fopen("AlunosComOrdenacaoANO.txt", "w");
-    if(arquivo == NULL) {
+    if(arquivo2 == NULL) {
         printf("Erro ao abrir o arquivo");
     }
 
     for(int i = 0; i < n; i++) {
-        fprintf(arquivo,"%d\n%s\n%d %d %d\n", alunos[i].id, alunos[i].nome,alunos[i].nasc.dia, alunos[i].nasc.mes, alunos[i].nasc.ano);
+        fprintf(arquivo2,"%d\n%s\n%d %d %d\n", alunos[i].id, alunos[i].nome,alunos[i].nasc.dia, alunos[i].nasc.mes, alunos[i].nasc.ano);
     }
 
     fclose(arquivo2);
+
+    //Agora vamos fazer a ordenacao pelo NOME que o aluno nasceu no array ja ordenado pelo ANO e, em caso de empate, pelo ANO
+
+    for(int i = 0; i < n; i++) {
+        int posMenor = i;
+        for(int j = i + 1; j < n; j++) {
+            if (strcmp(alunos[j].nome, alunos[posMenor].nome) < 0) {
+                posMenor = j;
+            }
+            else if (strcmp(alunos[j].nome, alunos[posMenor].nome) == 0) {
+                if (alunos[j].nasc.ano < alunos[posMenor].nasc.ano) {
+                    posMenor = j;
+                }
+            }
+        }
+        if(posMenor != i) {
+            Aluno temp = alunos[i];
+            alunos[i] = alunos[posMenor];
+            alunos[posMenor] = temp;
+        }
+    }
+
+    //Aqui vamos printar os dados dos alunos inseridos na tela estando ordenados pelo NOME caso
+    //o usuario digite "SIM"
+
+    printf("Quer ver como ficou o cadastro dos usuarios com a ordenacao pelo NOME?\nDigite SIM para ver ou NAO para nao ver\n");
+    fgets(resp, 4, stdin);
+    getchar();
+    resp[strcspn(resp, "\n")] = '\0';
+    if(strcmp(resp, "SIM") == 0) {
+        for(int i = 0; i < n; i++) {
+            printf("%do aluno:\n- ID: %d\n- Nome: %s\n- Data de nascimento: %d/%d/%d\n\n", i + 1, alunos[i].id, alunos[i].nome,alunos[i].nasc.dia, alunos[i].nasc.mes, alunos[i].nasc.ano);
+        }
+    }
+
+    //Aqui e criado um arquivo chamado AlunosComOrdenacaoANO com as informacoes dos alunos ordenadas pelo ano
+
+    FILE *arquivo3 = fopen("AlunosComOrdenacaoNOME.txt", "w");
+    if(arquivo3 == NULL) {
+        printf("Erro ao abrir o arquivo");
+    }
+
+    for(int i = 0; i < n; i++) {
+        fprintf(arquivo3,"%d\n%s\n%d %d %d\n", alunos[i].id, alunos[i].nome,alunos[i].nasc.dia, alunos[i].nasc.mes, alunos[i].nasc.ano);
+    }
+
+    fclose(arquivo3);
 }
