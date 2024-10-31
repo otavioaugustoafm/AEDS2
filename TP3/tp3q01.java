@@ -29,8 +29,8 @@ public class tp3q01 {
 
         for(int i = 0; i < qnt; i++) {
             comando = sc.nextLine();
-            if(comando.charAt(1) = 'I') {
-
+            if(comando.charAt(1) = 'I') {   
+                
             }    
         }
 
