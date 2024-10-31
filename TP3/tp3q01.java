@@ -25,16 +25,37 @@ public class tp3q01 {
         }
 
         int qnt = sc.nextInt();
-        String comando;
 
         for(int i = 0; i < qnt; i++) {
-            comando = sc.nextLine();
-            if(comando.charAt(1) = 'I') {   
-                
-            }    
+            String comando = sc.nextLine();
+            if(comando.length() >= 4) {
+            String prefixo = comando.substring(0,1);
+                int num = Integer.parseInt(comando.substring(3));
+                if(prefixo.equals("II")){
+                    Pokemon found = PokemonSearch.searchPokemonId(pokemons, num);
+                    lista.InserirInicio(found);
+                } else if(prefixo.equals("IF")) {
+
+                } else if(prefixo.equals("I*")) {
+
+                } else if(prefixo.equals("RI")){
+
+                } else if(prefixo.equals("RF")) {
+
+                } else if(prefixo.equals("R*")) {
+
+                }
+            }
         }
 
         sc.close();
+
+        for(int i = 0; i < lista.array.length; i++) {
+            if(lista.array[i] == null) {
+                break;
+            }
+            System.out.println(lista.array[i]);
+        }
     }
 }
 
