@@ -5,15 +5,17 @@ import java.util.*;
 public class tp3q01 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        
         String input_string;
         int input_int = 0;
 
         // Ler o CSV, e passar tudo para uma List
-        List<Pokemon> pokemons = ReadCsv.readAllFile("pokemon.csv");
+        List<Pokemon> pokemons = ReadCsv.readAllFile("/tmp/pokemon.csv");
 
         // List que iremos adicionar apenas os selecionados da entrada, para trabalhar só com eles
         Lista lista = new Lista();
+
+        Lista listaRemovidos = new Lista();
 
         // Ler até FIM e procurar por ID, e adicionar na List
         while (!(input_string = sc.nextLine()).equals("FIM")) {
@@ -25,37 +27,43 @@ public class tp3q01 {
         }
 
         int qnt = sc.nextInt();
+        sc.nextLine();
 
         for(int i = 0; i < qnt; i++) {
             String comando = sc.nextLine();
-            if(comando.length() >= 4) {
-            String prefixo = comando.substring(0,1);
-                int num = Integer.parseInt(comando.substring(3));
-                if(prefixo.equals("II")){
-                    Pokemon found = PokemonSearch.searchPokemonId(pokemons, num);
-                    lista.InserirInicio(found);
-                } else if(prefixo.equals("IF")) {
-
-                } else if(prefixo.equals("I*")) {
-
-                } else if(prefixo.equals("RI")){
-
-                } else if(prefixo.equals("RF")) {
-
-                } else if(prefixo.equals("R*")) {
-
-                }
+            Scanner lineScanner = new Scanner(comando);
+            String prefixo = lineScanner.next();
+            int num = -1;
+            if(lineScanner.hasNextInt()) {
+                num = lineScanner.nextInt();
+            }
+            int num2 = -1;
+            if(lineScanner.hasNextInt()) {
+                num2 = lineScanner.nextInt();    
+            }
+            if(prefixo.equals("II")){
+                Pokemon found = PokemonSearch.searchPokemonId(pokemons, num);
+                lista.InserirInicio(found);
+            } else if(prefixo.equals("IF")) {
+                Pokemon found = PokemonSearch.searchPokemonId(pokemons, num);
+                lista.InserirFim(found);
+            } else if(prefixo.equals("I*")) {
+                Pokemon found = PokemonSearch.searchPokemonId(pokemons, num2);
+                lista.Inserir(found, num);
+            } else if(prefixo.equals("RI")){
+                Pokemon found = lista.RemoverInicio();
+                System.out.println("(R) " + found.getName());
+            } else if(prefixo.equals("RF")) {
+                Pokemon found = lista.RemoverFim();
+                System.out.println("(R) " + found.getName());
+            } else if(prefixo.equals("R*")) {
+                Pokemon found = lista.Remover(num);
+                System.out.println("(R) " + found.getName());
             }
         }
 
         sc.close();
-
-        for(int i = 0; i < lista.array.length; i++) {
-            if(lista.array[i] == null) {
-                break;
-            }
-            System.out.println(lista.array[i]);
-        }
+        lista.Mostrar();
     }
 }
 
@@ -331,7 +339,7 @@ class Lista {
     void Mostrar() {
         int cont = 0;
         for(int i = 0; i < n; i++) {
-            System.out.println("[" + cont +"]" + array[i]);
+            System.out.println("[" + cont +"] " + array[i]);
             cont++;
         }
     }
