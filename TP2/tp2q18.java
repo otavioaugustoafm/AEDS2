@@ -1,11 +1,11 @@
-import java.util.Date;
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 class Pokemon {
@@ -214,19 +214,6 @@ class Pokemon {
                 " - " + generation + " gen] - " + formattedDate;
     }
 
-    // aqui a string está sendo tratada
-    private static String formatar(String linha) {
-        boolean in_list = false;
-        StringBuilder str = new StringBuilder(linha);
-        for (int i = 0; i < linha.length(); i++) {
-            if (!in_list && linha.charAt(i) == ',') {
-                str.setCharAt(i, ';');
-            } else if (str.charAt(i) == '"') {
-                in_list = !in_list;
-            }
-        }
-        return str.toString();
-    }
 }
 
 public class tp2q18 {
