@@ -52,6 +52,7 @@ public class quicksort {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escolha uma opção:\n1 - Quicksort com pivô no primeiro elemento.\n2 - Quicksort com pivô no elemento do meio\n3 - Quicksort com o pivô no último elemento\n4 - Quicksort com o pivô em um elemento que foi escolhido\n5 - Sair do programa");
         int op = scanner.nextInt();
+        scanner.close();
         return op;
     }
 
