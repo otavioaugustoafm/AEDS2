@@ -1,11 +1,11 @@
-//Não soube enviar na caralha do BeeCrowd
+//Não soube enviar na porra do BeeCrowd
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 int main() {
-    FILE *arquivo = fopen("txt/entrada.txt", "r");
+    FILE *arquivo = fopen("txt/vogaisAlienigenas.txt", "r");
     char vogais[5];
     int cont = 0;
 
