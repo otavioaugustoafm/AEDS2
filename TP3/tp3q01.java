@@ -15,8 +15,6 @@ public class tp3q01 {
         // List que iremos adicionar apenas os selecionados da entrada, para trabalhar só com eles
         Lista lista = new Lista();
 
-        Lista listaRemovidos = new Lista();
-
         // Ler até FIM e procurar por ID, e adicionar na List
         while (!(input_string = sc.nextLine()).equals("FIM")) {
             input_int = Integer.parseInt(input_string);
