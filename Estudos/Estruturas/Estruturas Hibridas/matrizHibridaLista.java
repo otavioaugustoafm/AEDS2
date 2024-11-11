@@ -10,7 +10,34 @@ class Matriz {
     }
 
     void construirMatriz() {
+        this.inicio = new CelulaMatriz();
+        Celula atual = inicio;
+        Celula linhaAcima = null;
 
+        for(int i = 1; i < this.coluna; i++) {
+            atual.dir = new CelulaMatriz();
+            atual.dir.esq = atual;
+            atual = atual.dir;
+        }
+
+        for(int i = 0; i < this.linha; i++) {
+            if(linhaAcima == null) {
+                linhaAcima = inicio;
+            } else {
+                linhaAcima = linhaAcima.inf;
+            }
+            atual = new Celula();
+            atual.sup = linhaAcima;
+            linhaAcima.inf = atual;
+
+            CelulaMatriz celulaAcima = linhaAcima;
+            CleulaMatriz celulaAtual = atual;
+            for(int j = 1; j < this.coluna; j++) {
+                celulaAtual.dir = new Celula();
+                celulaAtual.dir.esq = celulaAtual;
+                
+            }
+        }
     }
 }
 
