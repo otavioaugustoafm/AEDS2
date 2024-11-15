@@ -146,7 +146,7 @@ public class matrizHibridaLista {
             Lista lista = matriz.buscarElemento(l,c);
             lista.preencherLista(lista);
         }
-        System.out.println("Agora, vamos printar a lista de uma posicao.\nDigite a posicao na matriz que esta essa lista, primeiro a linha e depois  acoluna: ");
+        System.out.println("Agora, vamos printar a lista de uma posicao.\nDigite a posicao na matriz que esta essa lista, primeiro a linha e depois a coluna: ");
         l = scanner.nextInt(); c = scanner.nextInt();
         if(l > matriz.linha || c > matriz.coluna) {
             System.out.println("Posicao invalida");
@@ -154,5 +154,6 @@ public class matrizHibridaLista {
             Lista lista = matriz.buscarElemento(l,c);
             lista.mostrar(lista);
         }
+        scanner.close();
     }
 }
