@@ -27,6 +27,14 @@ class Arvore {
         }
     }
 
+    public void caminharOrdem(No no) {
+        if(no != null) {
+            caminharOrdem(no.esq);
+            System.out.print(no.elemento + " ");
+            caminharOrdem(no.dir);
+        }
+    }
+
     public void caminharPre(No no) {
         if(no != null) {
             System.out.print(no.elemento + "(fator " + (no.getAltura(no.dir) - no.getAltura(no.esq)) + ") ");
@@ -70,11 +78,18 @@ class Arvore {
                 if(fatorFilhoDir == -1) {
                     atual.dir = rotacionarDir(atual.dir);  
                 }
-                atual = rotacionarEsq(atual.dir);
+                atual = rotacionarEsq(atual);
             } else if(fator == -2) {
-                int fatorFilhoEsq = atual.getAltura(atual.dir)
+                int fatorFilhoEsq = atual.getAltura(atual.dir);
+                if(fatorFilhoEsq == 1) {
+                    atual.esq = rotacionarEsq(atual.esq);
+                }
+                atual = rotacionarDir(atual);
+            } else {
+                System.out.println("Erro!");
             }
         }
+        return atual;
     }
 
     public No rotacionarEsq(No atual) {
@@ -135,6 +150,13 @@ class No {
 
 public class arvoreBalanceada { 
     public static void main(String[] args) {
-        
+        Arvore arvore = new Arvore();
+        int[] vet = {4,35,10,13,3,30,15,12,7,40,20};
+
+        for(int elemento : vet) {
+            arvore.inserir(elemento);
+        }
+
+        arvore.caminharPre(arvore.raiz);
     }
 }
