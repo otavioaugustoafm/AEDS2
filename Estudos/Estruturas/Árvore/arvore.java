@@ -47,9 +47,6 @@ class Agenda {
         percorrerEmOrdemRecursivo(this.raiz);
     }
 
-    void percorrerEmOrdem(String cpf) {
-        percorrerEmOrdemRecursivo(this.raiz, cpf);
-    }
 
     void mostrarLista(No atual) {
         Celula tmp = atual.primeiro.prox;
@@ -65,32 +62,6 @@ class Agenda {
             System.out.println("Letra do nó: " + atual.letra);
             mostrarLista(atual);
             percorrerEmOrdemRecursivo(atual.dir);
-        }
-    }
-
-    void percorrerEmOrdemRecursivo(No atual, String cpf){
-        if(atual != null) {
-            percorrerEmOrdemRecursivo(atual.esq);
-            removerLista(atual, cpf);
-            percorrerEmOrdemRecursivo(atual.dir);
-        }
-    }
-
-    void removerLista(No atual, String cpf) {
-        Celula tmp = atual.primeiro;
-        Celula tmp2 = atual.primeiro.prox;
-        while(tmp2 != null) {
-            if(tmp2.contato.cpf.equals(cpf)) {
-                System.out.println(tmp2.contato.cpf + " será excluído!");
-                tmp.prox = tmp2.prox;
-                if(tmp2.prox == null) {
-                    atual.ultimo = tmp;
-                }
-                tmp2 = null;
-                break;
-            }
-            tmp = tmp2;
-            tmp2 = tmp2.prox;
         }
     }
     
@@ -168,7 +139,7 @@ public class arvore {
                     Contato contato = new Contato();
                     System.out.println("Digite o CPF: ");
                     contato.cpf = scanner.nextLine();
-                    agenda.removerLista(agenda.raiz, contato.cpf);
+                    
                     break;
                 }
                 case 3: {
